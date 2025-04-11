@@ -14,7 +14,7 @@ async function create(formData: FormData) {
 }
 
 export default async function Home() {
-  const comments = (await sql`SELECT * FROM comments`) as unknown[];
+  const comments = await sql`SELECT * FROM comments`;
 
   return (
     <>
@@ -27,7 +27,7 @@ export default async function Home() {
         <button type="submit">Submit</button>
       </form>
       <ul>
-        {comments.map((row: unknown) => {
+        {comments.map((row) => {
           return <li key={row.comment}>{row.comment}</li>;
         })}
       </ul>
